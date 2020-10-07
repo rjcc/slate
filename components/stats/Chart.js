@@ -93,7 +93,7 @@ export default class Chart extends React.Component {
   //Get Min & Max X
   getMinX() {
     const { data } = this.props;
-    let dates = data.sort(this.sortDates("date"));
+    let dates = data;
     this.setState({
       minX: dates[0].date,
     });
@@ -102,7 +102,7 @@ export default class Chart extends React.Component {
 
   getMaxX() {
     const { data } = this.props;
-    let dates = data.sort(this.sortDates("date"));
+    let dates = data;
     this.setState({
       maxX: dates[data.length - 1].date,
     });
@@ -165,49 +165,34 @@ export default class Chart extends React.Component {
     }));
   }
 
-  sortDates(key) {
-    return function innerSort(a, b) {
-      const varA = typeof a[key] === "string" ? a[key].toUpperCase() : a[key];
-      const varB = typeof b[key] === "string" ? b[key].toUpperCase() : b[key];
-      let comparison = 0;
-      if (varA > varB) {
-        comparison = 1;
-      } else if (varA < varB) {
-        comparison = -1;
-      }
-      return comparison;
-    };
-  }
   //Organize Categories Into Seperate Arrays within a Larger Array
   sepCategories() {
     const { data } = this.props;
-    if (data) {
-      const oData = [];
-      const category1 = [];
-      const category2 = [];
-      const category3 = [];
+    const oData = [];
+    const category1 = [];
+    const category2 = [];
+    const category3 = [];
 
-      data.forEach((data) => {
-        if (data.category == "1") {
-          category1.push(data);
-        }
-        if (data.category == "2") {
-          category2.push(data);
-        }
-        if (data.category == "3") {
-          category3.push(data);
-        }
-      });
+    data.forEach((obj) => {
+      if (obj.category == "1") {
+        category1.push(obj);
+      }
+      if (obj.category == "2") {
+        category2.push(obj);
+      }
+      if (obj.category == "3") {
+        category3.push(obj);
+      }
+    });
 
-      oData.push(category1);
-      oData.push(category2);
-      oData.push(category3);
+    oData.push(category1);
+    oData.push(category2);
+    oData.push(category3);
 
-      this.setState((prevState) => ({
-        organizedData: [...prevState.organizedData, oData],
-      }));
-      this.createCoordinates(oData);
-    }
+    this.setState((prevState) => ({
+      organizedData: [...prevState.organizedData, oData],
+    }));
+    this.createCoordinates(oData);
   }
 
   //Map through arrays of arrays of an array of objects and add x and y key/value pairs to each object.
@@ -319,6 +304,15 @@ export default class Chart extends React.Component {
                 </text>
               </g>
               )
+              case "month":
+              return (
+                <g>
+                <line css={STYLES_AXIS_LINE} x1={tick.x} y1="90%" x2={tick.x} y2="92%" />
+                <text css={STYLES_CHART_TEXT} textAnchor="middle" x={tick.x} y="95%">
+                  {`${month}`}
+                </text>
+              </g>
+              )
               case "year":
                 return (
                   <g>
@@ -333,7 +327,9 @@ export default class Chart extends React.Component {
                   <g>
                   <line css={STYLES_AXIS_LINE} x1={tick.x} y1="90%" x2={tick.x} y2="92%" />
                   <text css={STYLES_CHART_TEXT} textAnchor="middle" x={tick.x} y="95%">
-                    {`${hours}:${minutes}:${seconds}`}
+                    { hours < 10 ? `0${hours}:` : `${hours}:`}
+                    { minutes < 10 ? `0${minutes}:` : `${minutes}:`}
+                    { seconds < 10 ? `0${seconds}` : `${seconds}`}
                   </text>
                 </g>
                 )

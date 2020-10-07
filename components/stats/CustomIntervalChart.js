@@ -9,57 +9,34 @@ import Chart from "./Chart";
 //Default grid line count
 const gridLineCount = 10
 
-const getRandomInt = (max) => {
-    return Math.floor(Math.random() * Math.floor(max));
-  }
-  
-  const randomDate = (start, end) => {
-    return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
-  }
-  
-  let newData = [
-    { id: 1, date: randomDate(new Date(2018, 0, 1), new Date()), category: "1", value: getRandomInt(1000) },
-    { id: 2, date: randomDate(new Date(2018, 0, 1), new Date()), category: "1", value: getRandomInt(1000) },
-    { id: 4, date: randomDate(new Date(2019, 0, 1), new Date()), category: "1", value: getRandomInt(1000) },
-    { id: 3, date: randomDate(new Date(2019, 0, 1), new Date()), category: "1", value: getRandomInt(1000) },
-    { id: 5, date: randomDate(new Date(2019, 0, 1), new Date()), category: "1", value: getRandomInt(1000) },
-    { id: 6, date: randomDate(new Date(2019, 0, 1), new Date()), category: "1", value: getRandomInt(1000) },
-    { id: 7, date: randomDate(new Date(2020, 0, 1), new Date()), category: "2", value: getRandomInt(1000) },
-    { id: 8, date: randomDate(new Date(2020, 0, 1), new Date()), category: "2", value: getRandomInt(1000) },
-    { id: 9, date: randomDate(new Date(2020, 5, 1), new Date()), category: "2", value: getRandomInt(1000) },
-    { id: 10, date: randomDate(new Date(2020, 6, 1), new Date()), category: "2", value: getRandomInt(1000) },
-    { id: 11, date: randomDate(new Date(2020, 9, 1), new Date()), category: "3", value: getRandomInt(1000) },
-    { id: 12, date: randomDate(new Date(2020, 9, 1), new Date()), category: "3", value: getRandomInt(1000) },
-    { id: 13, date: randomDate(new Date(2020, 9, 1), new Date()), category: "3", value: getRandomInt(1000) },
-    { id: 14, date: randomDate(new Date(2020, 10, 1), new Date()), category: "3", value: getRandomInt(1000) },
-  ];
-
-
 export default class CustomIntervalChart extends React.Component {
 
     intervalData = () => {
         const { data } = this.props;
         const { interval } = this.props;
         const today = new Date();
-        let incrementData = []
         switch (interval) {
             case "day":
-                return data;
+                let dayData = data.filter(obj => Date.parse(obj.date) >= Date.parse(today) - 86400000)
+                return dayData;
             case "week":
-                return data;   
+                let weekData = data.filter(obj => Date.parse(obj.date) >= Date.parse(today) - 2628000000)
+                return weekData;
             case "month":
-                return data;
+                let monthData = data.filter(obj => Date.parse(obj.date) >= Date.parse(today) - 2678400000)
+                return monthData;
             case "quarter":
-                return data;
+                let quarterData = data.filter(obj => Date.parse(obj.date) >= Date.parse(today) - 7884000000)
+                return quarterData;
             case "semi-annual":
-                return data;
+                let semiData = data.filter(obj => Date.parse(obj.date) >= Date.parse(today) - 15768000000)
+                return semiData;
             case "annual":
-                //incrementData.push(this.newData);
-                const newNewData = newData.filter(obj => obj.date.getFullYear() >= new Date().getFullYear())
-                console.log(newData[0].date.getFullYear())
-                return newNewData;
+                let annualData = data.filter(obj => new Date(obj.date).getFullYear() >= today.getFullYear())  
+                return annualData;
             case "decade":
-                return data; 
+                let decadeData = data.filter(obj => Date.parse(obj.date) >= Date.parse(today) - 315360000000)
+                return decadeData;
             default:
                 return data;
         }
