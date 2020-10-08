@@ -10,6 +10,7 @@ const STYLES_GRAPH_CONTAINER = css`
 const STYLES_GRAPH = css`
   margin: auto;
   background-image: linear-gradient(${Constants.system.pitchBlack}, ${Constants.system.slate});
+  cursor: crosshair;
 `;
 
 const STYLES_AXIS_LINE = css`
@@ -45,6 +46,16 @@ const STYLES_CHART_TEXT_Y = css`
   font-family: ${Constants.font.code};
   writing-mode:   vertical-rl;
   text-transform: uppercase;
+`;
+
+const STYLES_VALUES_ANCHOR = css`
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  width: 32px;
+  cursor: pointer;
 `;
 
 export default class Chart extends React.Component {
@@ -257,6 +268,10 @@ export default class Chart extends React.Component {
     return cOrganized;
   };
 
+  _handleMouseOver = (e) => {
+    //show the tool tip and pass in coordinate data??
+  }
+
 
   render() {
     const { data } = this.props;
@@ -265,7 +280,7 @@ export default class Chart extends React.Component {
     const { height } = this.props;
 
     return (
-      <div id="graphContainer" css={STYLES_GRAPH_CONTAINER}>
+      <div id="graphContainer" onMouseOver={this._handleMouseOver} css={STYLES_GRAPH_CONTAINER}>
         <svg css={STYLES_GRAPH} viewBox={ (`0 0 ${width} ${height}`) }>
           <defs>
           <linearGradient id="linear-gradient" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="100%" >
