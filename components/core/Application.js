@@ -573,6 +573,8 @@ export default class ApplicationPage extends React.Component {
       return false;
     }
 
+    await Actions.updateSearch("delete-user");
+
     let response = await Actions.deleteViewer();
 
     if (!response || response.error) {
@@ -681,6 +683,10 @@ export default class ApplicationPage extends React.Component {
           noBoundary: true,
         },
       });
+    }
+
+    if (newAccount) {
+      Actions.updateSearch("create-user");
     }
     return response;
   };

@@ -56,12 +56,7 @@ export const doSlates = async ({ serializedUsers, slates }) => {
   };
 };
 
-export const doTrusted = async ({
-  users,
-  trusted,
-  serializedUsersMap,
-  serializedSlatesMap,
-}) => {
+export const doTrusted = async ({ users, trusted, serializedUsersMap, serializedSlatesMap }) => {
   trusted.forEach((each) => {
     if (each.target_user_id && !serializedUsersMap[each.target_user_id]) {
       users.push(each.target_user_id);
@@ -73,9 +68,7 @@ export const doTrusted = async ({
     console.log({ query: `CHECK_TO_SERIALIZE` });
     if (users.length) {
       console.log({ query: `(${users.length}) USERS_FOR_SERIALIZATION` });
-      userEntities = await DB.select("id", "username", "data")
-        .from("users")
-        .whereIn("id", users);
+      userEntities = await DB.select("id", "username", "data").from("users").whereIn("id", users);
     }
   } catch (e) {
     console.log("FAILED TO SERIALIZE");
@@ -138,9 +131,7 @@ export const doPendingTrusted = async ({
     console.log({ query: `CHECK_TO_SERIALIZE` });
     if (users.length) {
       console.log({ query: `(${users.length}) USERS_FOR_SERIALIZATION` });
-      userEntities = await DB.select("id", "username", "data")
-        .from("users")
-        .whereIn("id", users);
+      userEntities = await DB.select("id", "username", "data").from("users").whereIn("id", users);
     }
   } catch (e) {
     console.log("FAILED TO SERIALIZE");
@@ -207,9 +198,7 @@ export const doSubscriptions = async ({
     console.log({ query: `CHECK_TO_SERIALIZE` });
     if (users.length) {
       console.log({ query: `(${users.length}) USERS_FOR_SERIALIZATION` });
-      userEntities = await DB.select("id", "username", "data")
-        .from("users")
-        .whereIn("id", users);
+      userEntities = await DB.select("id", "username", "data").from("users").whereIn("id", users);
     }
   } catch (e) {
     console.log("FAILED TO SERIALIZE");
@@ -301,9 +290,7 @@ export const doSubscribers = async ({
     console.log({ query: `CHECK_TO_SERIALIZE` });
     if (users.length) {
       console.log({ query: `(${users.length}) USERS_FOR_SERIALIZATION` });
-      userEntities = await DB.select("id", "username", "data")
-        .from("users")
-        .whereIn("id", users);
+      userEntities = await DB.select("id", "username", "data").from("users").whereIn("id", users);
     }
   } catch (e) {
     console.log("FAILED TO SERIALIZE");

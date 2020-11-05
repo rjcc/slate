@@ -10,6 +10,7 @@ import { css } from "@emotion/core";
 import { SearchDropdown } from "~/components/core/SearchDropdown";
 import { dispatchCustomEvent } from "~/common/custom-events";
 import { SlatePreviewRow } from "~/components/core/SlatePreviewBlock";
+import { response } from "express";
 
 const STYLES_ICON_CIRCLE = css`
   height: 24px;
@@ -144,16 +145,16 @@ const FileEntry = ({ item }) => {
 
 export class SearchModal extends React.Component {
   state = {
-    loading: true,
+    loading: false, //set to true initially if need to fill directory first
     results: [],
     inputValue: "",
     filters: { slates: true },
   };
 
   componentDidMount = async () => {
-    await this.fillDirectory();
+    // await this.fillDirectory();
     // await this.fillPersonalDirectory();
-    this.setState({ loading: false });
+    // this.setState({ loading: false });
   };
 
   fillDirectory = async () => {
@@ -252,24 +253,54 @@ export class SearchModal extends React.Component {
     }
   };
 
-  _handleSearch = () => {
-    if (!this.state.loading) {
-      let searchResults = this.miniSearch.search(this.state.inputValue);
-      let ids = new Set();
-      for (let result of searchResults) {
-        ids.add(result.id);
+  _handleSearch = async () => {
+    //search personal search first
+    //handle the input value and take out #, @ and interpret filters (affects type and filter by)
+    let networkIds = [];
+    for (let sub of this.props.viewer.subscriptions) {
+      if (sub.target_user_id) {
+        networkIds.push(sub.target_user_id);
       }
-      let autofill = this.miniSearch.autoSuggest(this.state.inputValue);
-      for (let i = 0; i < autofill.length; i++) {
-        let result = this.miniSearch.search(autofill[i].suggestion)[0];
-        if (!ids.has(result.id)) {
-          ids.add(result.id);
-          searchResults.push(result);
-        }
-      }
-      this.setState({ results: searchResults });
     }
+    for (let sub of this.props.viewer.trusted) {
+      if (sub.target_user_id) {
+        networkIds.push(sub.target_user_id);
+      }
+    }
+    for (let sub of this.props.viewer.pendingTrusted) {
+      if (sub.owner_user_id) {
+        networkIds.push(sub.owner_user_id);
+      }
+    }
+    let response = await Actions.search({
+      query: this.state.inputValue,
+      type: null,
+      userId: this.props.viewer.userId,
+      filterBy: null,
+      networkIds,
+    });
+    console.log(response.data.results);
+    this.setState({ results: response.data.results });
   };
+
+  // _handleSearch = () => {
+  //   if (!this.state.loading) {
+  //     let searchResults = this.miniSearch.search(this.state.inputValue);
+  //     let ids = new Set();
+  //     for (let result of searchResults) {
+  //       ids.add(result.id);
+  //     }
+  //     let autofill = this.miniSearch.autoSuggest(this.state.inputValue);
+  //     for (let i = 0; i < autofill.length; i++) {
+  //       let result = this.miniSearch.search(autofill[i].suggestion)[0];
+  //       if (!ids.has(result.id)) {
+  //         ids.add(result.id);
+  //         searchResults.push(result);
+  //       }
+  //     }
+  //     this.setState({ results: searchResults });
+  //   }
+  // };
 
   // _handleSearch = async () => {
   //   if (this.state.loading) return;

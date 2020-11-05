@@ -1,6 +1,7 @@
 import * as Data from "~/node_common/data";
 import * as Constants from "~/node_common/constants";
 import * as LibraryManager from "~/node_common/managers/library";
+import * as SearchManager from "~/node_common/managers/search";
 import * as Strings from "~/common/strings";
 import * as Upload from "~/node_common/upload";
 
@@ -147,6 +148,10 @@ export default async (req, res) => {
       decorator: "V1_SERVER_UPLOAD_TO_SLATE_ERROR",
       error: true,
     });
+  }
+
+  if (updatedSlate) {
+    SearchManager.updateSlate(updatedSlate, "EDIT");
   }
 
   return res.status(200).send({

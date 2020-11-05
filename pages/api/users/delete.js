@@ -2,6 +2,7 @@ import * as Environment from "~/node_common/environment";
 import * as Data from "~/node_common/data";
 import * as Utilities from "~/node_common/utilities";
 import * as Social from "~/node_common/social";
+import * as SearchManager from "~/node_common/managers/search";
 
 import { Buckets, PrivateKey } from "@textile/hub";
 
@@ -54,11 +55,13 @@ export default async (req, res) => {
     });
   }
 
+  SearchManager.updateUser(user, "REMOVE");
+
   const deleted = await Data.deleteUserByUsername({
     username: user.username,
   });
 
-  if (!deleted) {
+  if (!deleted || deleted.error) {
     return res.status(500).send({ decorator: "SERVER_USER_DELETE", error: true });
   }
 

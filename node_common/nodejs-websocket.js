@@ -10,6 +10,7 @@ export const create = () => {
   if (ws) {
     return;
   }
+  console.log("CREATED WEBSOCKET");
 
   if (Strings.isEmpty(Environment.RESOURCE_URI_PUBSUB)) {
     return;
@@ -19,7 +20,7 @@ export const create = () => {
     perMessageDeflate: false,
   });
 
-  ws.on("ping", function() {
+  ws.on("ping", function () {
     clearTimeout(this.pingTimeout);
 
     this.pingTimeout = setTimeout(() => {
@@ -32,6 +33,7 @@ export const create = () => {
   });
 
   ws.on("close", () => {
+    console.log("CLOSED WEBSOCKET");
     console.log("Websocket disconnected");
   });
 
