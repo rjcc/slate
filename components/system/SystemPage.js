@@ -8,7 +8,7 @@ import * as Constants from "~/common/constants";
 import { css } from "@emotion/core";
 
 const STYLES_PAGE = css`
-  background-color: ${Constants.system.foreground};
+  background-color: ${Constants.system.white};
 `;
 
 const STYLES_BODY = css`
@@ -29,7 +29,7 @@ const STYLES_SIDEBAR = css`
   left: 0;
   bottom: 0;
   width: 312px;
-  background-color: ${Constants.system.foreground};
+  background-color: ${Constants.system.white};
   overflow-y: scroll;
   margin-top: 50px;
 
@@ -145,6 +145,17 @@ const STYLES_NAV_LEFT = css`
   width: 100%;
   display: flex;
   justify-content: flex-end;
+  text-align: left;
+`;
+
+const STYLES_MAIN = css`
+  margin-top: 0px;
+`;
+const STYLES_NAV_LINKS = css`
+  color: #666666;
+  text-decoration: none;
+  transition: 200ms ease color;
+  display: block;
 `;
 
 export default class SystemPage extends React.Component {
@@ -189,88 +200,98 @@ export default class SystemPage extends React.Component {
             </a>
           </div>
           <div css={STYLES_NAV_LEFT}>
-            <a href="https://github.com/filecoin-project/slate">Get involved</a>
-            <a href="https://github.com/filecoin-project/slate">Get involved</a>
+            <a href="https://github.com/filecoin-project/slate" css={STYLES_NAV_LINKS}>
+              Get involved
+            </a>
+            <a href="https://github.com/filecoin-project/slate" css={STYLES_NAV_LINKS}>
+              Get involved
+            </a>
           </div>
         </div>
-        <div css={STYLES_BODY}>{children}</div>
-        <div css={STYLES_SIDEBAR}>
-          <span css={STYLES_LABEL}>Built with Slate</span>
-          <SidebarLink
-            url={url}
-            href="/_/experiences/create-address"
-            title="CreateFilecoinAddress"
-          />
-          <SidebarLink
-            url={url}
-            href="/_/experiences/make-storage-deal"
-            title="CreateFilecoinStorageDeal"
-          />
-          <SidebarLink
-            url={url}
-            href="/_/experiences/generate-powergate-token"
-            title="CreateToken"
-          />
-          <SidebarLink
-            url={url}
-            href="/_/experiences/filecoin-wallet-balances"
-            title="FilecoinBalancesList"
-          />
-          <SidebarLink
-            url={url}
-            href="/_/experiences/list-filecoin-deals"
-            title="FilecoinDealsList"
-          />
-          <SidebarLink url={url} href="/_/experiences/filecoin-settings" title="FilecoinSettings" />
-          <SidebarLink url={url} href="/_/experiences/friends-list" title="FriendsList" />
-          <SidebarLink url={url} href="/_/experiences/peers-list" title="PeersList" />
-          <SidebarLink
-            url={url}
-            href="/_/experiences/send-address-filecoin"
-            title="SendAddressFilecoin"
-          />
+        <div css={STYLES_MAIN}>
+          <div css={STYLES_BODY}>{children}</div>
+          <div css={STYLES_SIDEBAR}>
+            <span css={STYLES_LABEL}>Built with Slate</span>
+            <SidebarLink
+              url={url}
+              href="/_/experiences/create-address"
+              title="CreateFilecoinAddress"
+            />
+            <SidebarLink
+              url={url}
+              href="/_/experiences/make-storage-deal"
+              title="CreateFilecoinStorageDeal"
+            />
+            <SidebarLink
+              url={url}
+              href="/_/experiences/generate-powergate-token"
+              title="CreateToken"
+            />
+            <SidebarLink
+              url={url}
+              href="/_/experiences/filecoin-wallet-balances"
+              title="FilecoinBalancesList"
+            />
+            <SidebarLink
+              url={url}
+              href="/_/experiences/list-filecoin-deals"
+              title="FilecoinDealsList"
+            />
+            <SidebarLink
+              url={url}
+              href="/_/experiences/filecoin-settings"
+              title="FilecoinSettings"
+            />
+            <SidebarLink url={url} href="/_/experiences/friends-list" title="FriendsList" />
+            <SidebarLink url={url} href="/_/experiences/peers-list" title="PeersList" />
+            <SidebarLink
+              url={url}
+              href="/_/experiences/send-address-filecoin"
+              title="SendAddressFilecoin"
+            />
 
-          <span css={STYLES_LABEL}>
-            <br />
-            <br />
-            Design
-          </span>
-          <SidebarLink url={url} href="/_/system/colors" title="Colors" />
-          <SidebarLink url={url} href="/_/system/icons" title="Icons" />
-          <SidebarLink url={url} href="/_/system/typography" title="Typography" />
+            <span css={STYLES_LABEL}>
+              <br />
+              <br />
+              Design
+            </span>
+            <SidebarLink url={url} href="/_/system/colors" title="Colors" />
+            <SidebarLink url={url} href="/_/system/icons" title="Icons" />
+            <SidebarLink url={url} href="/_/system/typography" title="Typography" />
 
-          <span css={STYLES_LABEL}>
-            <br />
-            <br />
-            Components
-          </span>
+            <span css={STYLES_LABEL}>
+              <br />
+              <br />
+              Components
+            </span>
 
-          <SidebarLink url={url} href="/_/system/buttons" title="Buttons" />
+            <SidebarLink url={url} href="/_/system/buttons" title="Buttons" />
 
-          <SidebarLink url={url} href="/_/system/checkboxes" title="Checkboxes" />
-          <SidebarLink url={url} href="/_/system/datepicker" title="Datepicker" />
-          <SidebarLink url={url} href="/_/system/dropdowns" title="Dropdowns" />
-          <SidebarLink url={url} href="/_/system/globe" title="Globe" />
-          <SidebarLink url={url} href="/_/system/hover-tile" title="Hover Tile" />
-          <SidebarLink url={url} href="/_/system/inputs" title="Inputs" />
-          <SidebarLink url={url} href="/_/system/loaders" title="Loaders" />
-          <SidebarLink url={url} href="/_/system/modals" title="Modals" />
-          <SidebarLink url={url} href="/_/system/radios" title="Radios" />
-          <SidebarLink url={url} href="/_/system/sliders" title="Sliders" />
-          <SidebarLink url={url} href="/_/system/tables" title="Tables" />
-          <SidebarLink url={url} href="/_/system/tabs" title="Tabs" />
-          <SidebarLink url={url} href="/_/system/toggles" title="Toggles" />
-          <SidebarLink url={url} href="/_/system/tooltips" title="Tooltips" />
+            <SidebarLink url={url} href="/_/system/checkboxes" title="Checkboxes" />
+            <SidebarLink url={url} href="/_/system/datepicker" title="Datepicker" />
+            <SidebarLink url={url} href="/_/system/dropdowns" title="Dropdowns" />
+            <SidebarLink url={url} href="/_/system/globe" title="Globe" />
+            <SidebarLink url={url} href="/_/system/hover-tile" title="Hover Tile" />
+            <SidebarLink url={url} href="/_/system/inputs" title="Inputs" />
+            <SidebarLink url={url} href="/_/system/loaders" title="Loaders" />
+            <SidebarLink url={url} href="/_/system/modals" title="Modals" />
+            <SidebarLink url={url} href="/_/system/radios" title="Radios" />
+            <SidebarLink url={url} href="/_/system/sliders" title="Sliders" />
+            <SidebarLink url={url} href="/_/system/tables" title="Tables" />
+            <SidebarLink url={url} href="/_/system/tabs" title="Tabs" />
+            <SidebarLink url={url} href="/_/system/toggles" title="Toggles" />
+            <SidebarLink url={url} href="/_/system/tooltips" title="Tooltips" />
 
-          <div
-            css={STYLES_SMALL_LINK}
-            style={{ marginTop: 48 }}
-            onClick={() => {
-              window.open("https://github.com/filecoin-project/slate");
-            }}
-          >
-            <SVG.ExpandBox height="12px" style={{ marginRight: 10 }} />
-            View source
+            <div
+              css={STYLES_SMALL_LINK}
+              style={{ marginTop: 48 }}
+              onClick={() => {
+                window.open("https://github.com/filecoin-project/slate");
+              }}
+            >
+              <SVG.ExpandBox height="12px" style={{ marginRight: 10 }} />
+              View source
+            </div>
           </div>
         </div>
       </div>

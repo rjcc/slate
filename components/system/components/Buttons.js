@@ -15,7 +15,7 @@ const STYLES_BUTTON = `
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
+  font-size: 12px;
   letter-spacing: 0.2px;
   font-family: ${Constants.font.semiBold};
   transition: 200ms ease all;
