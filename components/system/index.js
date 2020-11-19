@@ -51,25 +51,13 @@ import {
   LoaderSpinner,
 } from "~/components/system/components/Loaders";
 import { Slider } from "~/components/system/components/Slider";
-import {
-  SelectCountryMenu,
-  SelectMenu,
-} from "~/components/system/components/SelectMenus";
+import { SelectCountryMenu, SelectMenu } from "~/components/system/components/SelectMenus";
 import { StatUpload, StatDownload } from "~/components/system/components/Stat";
 import { TabGroup } from "~/components/system/components/TabGroup";
 import { Table } from "~/components/system/components/Table";
 import { Textarea } from "~/components/system/components/Textarea";
 import { Toggle } from "~/components/system/components/Toggle";
-import {
-  H1,
-  H2,
-  H3,
-  H4,
-  P,
-  UL,
-  OL,
-  LI,
-} from "~/components/system/components/Typography";
+import { H1, H2, H3, H4, P, UL, OL, LI } from "~/components/system/components/Typography";
 
 // NOTE(jim): Fragments
 import { Boundary } from "~/components/system/components/fragments/Boundary";
@@ -84,8 +72,6 @@ import {
   TableContent,
   TableColumn,
 } from "~/components/system/components/fragments/TableComponents";
-
-import { AvatarGroup } from "~/components/system/components/AvatarGroup";
 
 import * as SVG from "~/common/svg";
 
@@ -160,5 +146,4 @@ export {
   LoaderRotate,
   LoaderProgress,
   LoaderSpinner,
-  AvatarGroup,
 };
