@@ -31,7 +31,6 @@ const STYLES_SIDEBAR = css`
   width: 312px;
   background-color: ${Constants.system.foreground};
   overflow-y: scroll;
-  margin-top: 50px;
 
   ::-webkit-scrollbar {
     width: 4px;
@@ -123,30 +122,6 @@ const STYLES_SMALL_LINK = css`
   }
 `;
 
-const STYLES_NAV = css`
-  position: sticky;
-  top: 0;
-  padding: 24px 64px 24px 64px;
-  width: 100%;
-  height: 100%;
-  margin: 0 auto;
-  z-index: 4;
-  background-color: ${Constants.system.white};
-  border-bottom: 1px solid ${Constants.system.darkGray}; ;
-`;
-
-const STYLES_NAV_RIGHT = css`
-  flex-shrink: 0;
-  height: 24px;
-`;
-
-const STYLES_NAV_LEFT = css`
-  min-width: 10%;
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-`;
-
 export default class SystemPage extends React.Component {
   render() {
     const { title, description, url, children } = this.props;
@@ -182,20 +157,12 @@ export default class SystemPage extends React.Component {
 
           <link rel="shortcut icon" href="/static/favicon.ico" />
         </Head>
-        <div css={STYLES_NAV}>
-          <div css={STYLES_NAV_RIGHT}>
-            <a css={STYLES_LINK} href="/" style={{ marginTop: 0 }}>
-              <SVGLogo.Logo height="32px" style={{ marginBottom: 24 }} />
-            </a>
-          </div>
-          <div css={STYLES_NAV_LEFT}>
-            <a href="https://github.com/filecoin-project/slate">Get involved</a>
-            <a href="https://github.com/filecoin-project/slate">Get involved</a>
-          </div>
-        </div>
         <div css={STYLES_BODY}>{children}</div>
         <div css={STYLES_SIDEBAR}>
-          <span css={STYLES_LABEL}>Built with Slate</span>
+          <a css={STYLES_LINK} href="/" style={{ marginTop: 0 }}>
+            <SVGLogo.Logo height="32px" style={{ marginBottom: 24 }} />
+          </a>
+          <span css={STYLES_LABEL}>Experiences</span>
           <SidebarLink
             url={url}
             href="/_/experiences/create-address"
@@ -233,34 +200,34 @@ export default class SystemPage extends React.Component {
           <span css={STYLES_LABEL}>
             <br />
             <br />
-            Design
-          </span>
-          <SidebarLink url={url} href="/_/system/colors" title="Colors" />
-          <SidebarLink url={url} href="/_/system/icons" title="Icons" />
-          <SidebarLink url={url} href="/_/system/typography" title="Typography" />
-
-          <span css={STYLES_LABEL}>
-            <br />
-            <br />
             Components
           </span>
 
+          <SidebarLink url={url} href="/_/system/avatar-group" title="Avatar Group" />
           <SidebarLink url={url} href="/_/system/buttons" title="Buttons" />
-
+          <SidebarLink url={url} href="/_/system/card-tabs" title="Card Tabs" />
+          <SidebarLink url={url} href="/_/system/carousel" title="Carousel" />
           <SidebarLink url={url} href="/_/system/checkboxes" title="Checkboxes" />
+          <SidebarLink url={url} href="/_/system/colors" title="Colors" />
           <SidebarLink url={url} href="/_/system/datepicker" title="Datepicker" />
           <SidebarLink url={url} href="/_/system/dropdowns" title="Dropdowns" />
           <SidebarLink url={url} href="/_/system/globe" title="Globe" />
           <SidebarLink url={url} href="/_/system/hover-tile" title="Hover Tile" />
+          <SidebarLink url={url} href="/_/system/icons" title="Icons" />
           <SidebarLink url={url} href="/_/system/inputs" title="Inputs" />
+          <SidebarLink url={url} href="/_/system/line-chart" title="Line Chart" />
+          <SidebarLink url={url} href="/_/system/list-editor" title="List Editor" />
           <SidebarLink url={url} href="/_/system/loaders" title="Loaders" />
           <SidebarLink url={url} href="/_/system/modals" title="Modals" />
+          <SidebarLink url={url} href="/_/system/notifications" title="Notifications" />
           <SidebarLink url={url} href="/_/system/radios" title="Radios" />
           <SidebarLink url={url} href="/_/system/sliders" title="Sliders" />
+          <SidebarLink url={url} href="/_/system/stats" title="Stats" />
           <SidebarLink url={url} href="/_/system/tables" title="Tables" />
           <SidebarLink url={url} href="/_/system/tabs" title="Tabs" />
           <SidebarLink url={url} href="/_/system/toggles" title="Toggles" />
           <SidebarLink url={url} href="/_/system/tooltips" title="Tooltips" />
+          <SidebarLink url={url} href="/_/system/typography" title="Typography" />
 
           <div
             css={STYLES_SMALL_LINK}
