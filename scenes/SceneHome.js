@@ -1,12 +1,14 @@
 import * as React from "react";
 import * as Constants from "~/common/constants";
 import * as System from "~/components/system";
+import * as Actions from "~/common/actions";
 
 import { css } from "@emotion/core";
 
 import ScenePage from "~/components/core/ScenePage";
 import DataView from "~/components/core/DataView";
 import ScenePageHeader from "~/components/core/ScenePageHeader";
+import { PathActions } from "three";
 
 const STYLES_VIDEO_BIG = css`
   display: block;
@@ -36,6 +38,14 @@ export default class SceneHome extends React.Component {
     });
   };
 
+  _handleCleanUsers = () => {
+    Actions.cleanDatabaseUsers();
+  };
+
+  _handleCleanSlates = () => {
+    Actions.cleanDatabaseSlates();
+  };
+
   render() {
     let hasChildren = false;
     if (this.props.viewer && this.props.viewer.library[0].children.length) {
@@ -49,6 +59,10 @@ export default class SceneHome extends React.Component {
             ? "Welcome back! Here is your data."
             : "Welcome to Slate! You can share files with anyone in the world. Here is how it works:"}
         </ScenePageHeader>
+
+        <System.ButtonPrimary onClick={this._handleCleanUsers}>Clean users</System.ButtonPrimary>
+
+        <System.ButtonPrimary onClick={this._handleCleanSlates}>Clean slates</System.ButtonPrimary>
 
         {hasChildren ? (
           <div style={{ marginTop: "48px" }}>

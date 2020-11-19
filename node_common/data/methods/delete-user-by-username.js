@@ -1,19 +1,22 @@
 import { runQuery } from "~/node_common/data/utilities";
 
-export default async ({ username }) => {
+export default async ({ username, userId }) => {
   return await runQuery({
     label: "DELETE_USER_BY_USERNAME",
     queryFn: async (DB) => {
-      const query = await DB.select("id")
-        .from("users")
-        .where({ username })
-        .first();
+      let query;
+      let id;
+      if (!userId) {
+        query = await DB.select("id").from("users").where({ username }).first();
 
-      if (!query || query.error || !query.id) {
-        return false;
+        if (!query || query.error || !query.id) {
+          return false;
+        }
+
+        id = query.id;
+      } else {
+        id = userId;
       }
-
-      const id = query.id;
 
       const deletedSubscriptions = await DB.from("subscriptions")
         .where({ owner_user_id: id })

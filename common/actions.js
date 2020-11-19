@@ -52,6 +52,20 @@ export const sendFilecoin = async (data) => {
   });
 };
 
+export const cleanDatabaseSlates = async (data) => {
+  return await returnJSON(`/api/clean-up/slates`, {
+    ...DEFAULT_OPTIONS,
+    body: JSON.stringify({ data }),
+  });
+};
+
+export const cleanDatabaseUsers = async (data) => {
+  return await returnJSON(`/api/clean-up/users`, {
+    ...DEFAULT_OPTIONS,
+    body: JSON.stringify({ data }),
+  });
+};
+
 export const checkUsername = async (data) => {
   return await returnJSON(`/api/users/check`, {
     ...DEFAULT_OPTIONS,
