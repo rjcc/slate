@@ -1,5 +1,4 @@
 import Head from "next/head";
-
 import * as React from "react";
 import * as SVG from "~/common/svg";
 import * as SVGLogo from "~/common/logo";
@@ -15,7 +14,7 @@ const STYLES_BODY = css`
   max-width: 1200px;
   width: 100%;
   margin: 0 auto 0 auto;
-  padding: 88px 24px 128px 336px;
+  padding: 14px 24px 128px 336px;
 
   @media (max-width: 568px) {
     padding: 88px 24px 128px 24px;
@@ -129,7 +128,7 @@ const STYLES_NAV = css`
   justify-content: space-between;
   position: sticky;
   top: 0;
-  padding: 24px 64px 14px 64px;
+  padding: 24px;
   height: 100%;
   margin: 0 auto;
   z-index: 4;
@@ -190,7 +189,6 @@ export default class SystemPage extends React.Component {
           <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png" />
           <link rel="icon" type="image/png" sizes="96x96" href="/static/favicon-96x96.png" />
           <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16x16.png" />
-
           <link rel="shortcut icon" href="/static/favicon.ico" />
         </Head>
         <div css={STYLES_NAV}>
@@ -253,7 +251,6 @@ export default class SystemPage extends React.Component {
               href="/_/experiences/send-address-filecoin"
               title="SendAddressFilecoin"
             />
-
             <span css={STYLES_LABEL}>
               <br />
               <br />
@@ -268,9 +265,7 @@ export default class SystemPage extends React.Component {
               <br />
               Components
             </span>
-
             <SidebarLink url={url} href="/_/system/buttons" title="Buttons" />
-
             <SidebarLink url={url} href="/_/system/checkboxes" title="Checkboxes" />
             <SidebarLink url={url} href="/_/system/datepicker" title="Datepicker" />
             <SidebarLink url={url} href="/_/system/dropdowns" title="Dropdowns" />
