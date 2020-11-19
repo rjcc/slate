@@ -12,7 +12,7 @@ const STYLES_PAGE = css`
 `;
 
 const STYLES_BODY = css`
-  max-width: 960px;
+  max-width: 1200px;
   width: 100%;
   margin: 0 auto 0 auto;
   padding: 88px 24px 128px 336px;
@@ -124,10 +124,12 @@ const STYLES_SMALL_LINK = css`
 `;
 
 const STYLES_NAV = css`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
   position: sticky;
   top: 0;
-  padding: 24px 64px 24px 64px;
-  width: 100%;
+  padding: 24px 64px 14px 64px;
   height: 100%;
   margin: 0 auto;
   z-index: 4;
@@ -135,24 +137,22 @@ const STYLES_NAV = css`
   border-bottom: 1px solid ${Constants.system.darkGray}; ;
 `;
 
-const STYLES_NAV_RIGHT = css`
+const STYLES_NAV_LEFT = css`
   flex-shrink: 0;
   height: 24px;
 `;
 
-const STYLES_NAV_LEFT = css`
-  min-width: 10%;
-  width: 100%;
+const STYLES_NAV_RIGHT = css`
   display: flex;
   justify-content: flex-end;
-  text-align: left;
 `;
 
 const STYLES_MAIN = css`
-  margin-top: 0px;
+  margin-top: 50px;
 `;
+
 const STYLES_NAV_LINKS = css`
-  color: #666666;
+  color: ${Constants.system.darkGray};
   text-decoration: none;
   transition: 200ms ease color;
   display: block;
@@ -194,14 +194,18 @@ export default class SystemPage extends React.Component {
           <link rel="shortcut icon" href="/static/favicon.ico" />
         </Head>
         <div css={STYLES_NAV}>
-          <div css={STYLES_NAV_RIGHT}>
+          <div css={STYLES_NAV_LEFT}>
             <a css={STYLES_LINK} href="/" style={{ marginTop: 0 }}>
-              <SVGLogo.Logo height="32px" style={{ marginBottom: 24 }} />
+              <SVGLogo.Logo height="24px" style={{ marginBottom: 14 }} />
             </a>
           </div>
-          <div css={STYLES_NAV_LEFT}>
-            <a href="https://github.com/filecoin-project/slate" css={STYLES_NAV_LINKS}>
-              Get involved
+          <div css={STYLES_NAV_RIGHT}>
+            <a
+              href="https://slate.host/slate/built-with-slate"
+              style={{ marginRight: 32 }}
+              css={STYLES_NAV_LINKS}
+            >
+              Built with Slate
             </a>
             <a href="https://github.com/filecoin-project/slate" css={STYLES_NAV_LINKS}>
               Get involved
