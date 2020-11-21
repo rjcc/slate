@@ -191,34 +191,14 @@ export const getBucketAPIFromUserToken = async ({ user, bucketName, encrypted = 
 
   await buckets.getToken(identity);
 
-  let root = null;
-
   console.log(`[ buckets ] getOrCreate init ${name}`);
 
-  // NOTE(jim): captures `withThread` cases.
+  let root = null;
   try {
-    buckets = await setupWithThread({ buckets });
+    const creation = await buckets.getOrCreate(name, encrypted);
+    root = creation.root;
   } catch (e) {
-    console.log(`[ textile ] warning: ${e.message}`);
-  }
-
-  console.log(`[ buckets ] getOrCreate thread found for ${name}`);
-
-  // NOTE(jim): captures finding your bucket and or creating a new one.
-  try {
-    const roots = await buckets.list();
-    root = roots.find((bucket) => bucket.name === name);
-    if (!root) {
-      console.log(`[ buckets ] creating new bucket ${name}`);
-
-      if (encrypted) {
-        console.log("[ buckets ] this bucket will be encrypted");
-      }
-
-      const created = await buckets.create(name, encrypted);
-      root = created.root;
-    }
-  } catch (e) {
+    console.log(e);
     Social.sendTextileSlackMessage({
       file: "/node_common/utilities.js",
       user,
@@ -226,11 +206,11 @@ export const getBucketAPIFromUserToken = async ({ user, bucketName, encrypted = 
       code: e.code,
       functionName: `buckets.getOrCreate`,
     });
-
-    return { buckets: null, bucketKey: null, bucketRoot: null };
   }
 
-  console.log(`[ buckets ] getOrCreate success for ${name}`);
+  if (!root) {
+    return { buckets: null, bucketKey: null, bucketRoot: null };
+  }
 
   return {
     buckets,

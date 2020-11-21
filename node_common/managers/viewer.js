@@ -1,8 +1,8 @@
 // TODO(jim): The claim is that we can remove this
 // and the package.json depdencies at some later time.
-import { grpc } from "@improbable-eng/grpc-web";
-import { WebsocketTransport } from "@textile/grpc-transport";
-grpc.setDefaultTransport(WebsocketTransport());
+// import { grpc } from "@improbable-eng/grpc-web";
+// import { WebsocketTransport } from "@textile/grpc-transport";
+// grpc.setDefaultTransport(WebsocketTransport());
 
 import * as Environment from "~/node_common/environment";
 import * as Utilities from "~/node_common/utilities";
