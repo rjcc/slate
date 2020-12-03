@@ -143,7 +143,18 @@ const STYLES_PRE = css`
   padding-left: 16px;
 `;
 
-const STYLES_CODE = css``;
+const STYLES_CODE = css`
+  color: #fff5b1;
+  font-family: ${Constants.font.code};
+  font-size: 12px;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  tab-size: 2;
+  hyphens: none;
+`;
 
 export class PrismCode extends React.Component {
   wrapperEl = React.createRef();
