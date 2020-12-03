@@ -58,10 +58,6 @@ export class PrismCode extends React.Component {
     this.highlight();
   }
 
-  componentDidUpdate() {
-    this.highlight();
-  }
-
   highlight = () => {
     if (this.wrapperEl.current) {
       Prism.highlightElement(this.wrapperEl.current);
