@@ -76,7 +76,6 @@ import {
   TableContent,
   TableColumn,
 } from "~/components/system/components/fragments/TableComponents";
-import { PrismCode } from "~/components/system/components/fragments/Prism";
 
 import { AvatarGroup } from "~/components/system/components/AvatarGroup";
 
@@ -149,7 +148,6 @@ export {
   TableColumn,
   TooltipAnchor,
   TooltipWrapper,
-  PrismCode,
   // NOTE(jim): System values
   Constants,
   SVG,
