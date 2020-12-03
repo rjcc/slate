@@ -511,33 +511,6 @@ export const getServerSideProps = async (context) => {
   };
 };
 
-class CodeWindow extends React.Component {
-  componentDidMount() {
-    Prism.highlightAll();
-  }
-
-  render() {
-    const codeBlockContent = this.props.children + "";
-    const codeBlockToken = codeBlockContent.split("\n");
-    const textMap = codeBlockToken;
-
-    return (
-      <div css={STYLES_CODE_BLOCK} className="language-javascript" style={this.props.style}>
-        {textMap.map((element, index) => {
-          return (
-            <div css={STYLES_LINE} key={`${element}-${index}`}>
-              <div css={STYLES_PRE}>{index}</div>
-              <pre css={STYLES_CODE}>
-                <code>{element}</code>
-              </pre>
-            </div>
-          );
-        })}
-      </div>
-    );
-  }
-}
-
 const SlateTeamCards = (props) => {
   return (
     <div key={props.id} css={STYLES_CARD_WRAPPER}>
