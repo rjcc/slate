@@ -24,6 +24,98 @@ const STYLES_CODE_BLOCK = css`
       height: 0;
     }
   }
+
+  :not(pre) > code,
+  pre {
+    background: none;
+  }
+
+  /* Inline code */
+  :not(pre) > code {
+    padding: 0.1em;
+    border-radius: 0.3em;
+    white-space: normal;
+  }
+
+  .token.comment,
+  .token.block-comment,
+  .token.prolog,
+  .token.doctype,
+  .token.cdata {
+    color: #ff00ff;
+  }
+
+  .token.punctuation {
+    color: #ffd33d;
+  }
+
+  .token.tag,
+  .token.attr-name,
+  .token.namespace,
+  .token.number,
+  .token.unit,
+  .token.hexcode,
+  .token.deleted {
+    color: ${Constants.system.moonstone};
+  }
+
+  .token.property,
+  .token.selector {
+    color: #ffdf5d;
+  }
+
+  .token.function-name {
+    color: #ffd33d;
+  }
+
+  .token.boolean,
+  .token.selector .token.id,
+  .token.class-name,
+  .token.function,
+  .token.constant,
+  .token.symbol {
+    color: ${Constants.system.gray};
+  }
+
+  .token.important,
+  .token.atrule,
+  .token.keyword,
+  .token.selector .token.class,
+  .token.builtin {
+    color: #ffffff;
+  }
+
+  .token.string,
+  .token.char,
+  .token.attr-value,
+  .token.regex,
+  .token.variable {
+    color: #fff;
+  }
+
+  .token.operator,
+  .token.entity,
+  .token.url {
+    color: ${Constants.system.moonstone};
+  }
+
+  .token.important,
+  .token.bold {
+    font-weight: 400;
+    font-family: ${Constants.font.codeBold};
+  }
+
+  .token.italic {
+    font-style: italic;
+  }
+
+  .token.entity {
+    cursor: help;
+  }
+
+  .token.inserted {
+    color: ${Constants.system.brand};
+  }
 `;
 
 const STYLES_LINE = css`
@@ -33,7 +125,7 @@ const STYLES_LINE = css`
   justify-content: space-between;
 `;
 
-const STYLES_PRE = css`
+const STYLES_NUMBER = css`
   box-sizing: border-box;
   color: #666;
   font-family: ${Constants.font.code};
@@ -42,7 +134,7 @@ const STYLES_PRE = css`
   user-select: none;
 `;
 
-const STYLES_CODE = css`
+const STYLES_PRE = css`
   box-sizing: border-box;
   background-color: ${Constants.system.pitchBlack};
   font-family: ${Constants.font.code};
@@ -50,6 +142,8 @@ const STYLES_CODE = css`
   width: 100%;
   padding-left: 16px;
 `;
+
+const STYLES_CODE = css``;
 
 export class PrismCode extends React.Component {
   wrapperEl = React.createRef();
@@ -73,9 +167,11 @@ export class PrismCode extends React.Component {
       <div css={STYLES_CODE_BLOCK} className="language-javascript" style={this.props.style}>
         {textMap.map((element, index) => (
           <div css={STYLES_LINE} key={`${element}-${index}`}>
-            <div css={STYLES_PRE}>{index}</div>
-            <pre css={STYLES_CODE}>
-              <code ref={this.wrapperEl}>{element}</code>
+            <div css={STYLES_NUMBER}>{index}</div>
+            <pre css={STYLES_PRE}>
+              <code ref={this.wrapperEl} css={STYLES_CODE}>
+                {element}
+              </code>
             </pre>
           </div>
         ))}

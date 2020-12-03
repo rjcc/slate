@@ -4,8 +4,9 @@ import * as Actions from "~/common/actions";
 import * as System from "~/components/system";
 
 import { css } from "@emotion/react";
+import { PrismCode } from "~/components/system";
 
-import Prism from "prismjs";
+// import Prism from "prismjs";
 import WebsitePrototypeWrapper from "~/components/core/WebsitePrototypeWrapper";
 import WebsitePrototypeHeader from "~/components/core/NewWebsitePrototypeHeader";
 import WebsitePrototypeFooter from "~/components/core/NewWebsitePrototypeFooter";
@@ -719,7 +720,7 @@ export default class CommunityPage extends React.Component {
               </button>
             </div>
             <div css={STYLES_SPLIT_WIDTH}>
-              <CodeWindow>
+              <PrismCode>
                 {`const response = await fetch('https://slate.host/api/v1/get', {
 method: 'POST',
     headers: {
@@ -735,7 +736,7 @@ method: 'POST',
   
   const json = await response.json();
   console.log(json);`}
-              </CodeWindow>
+              </PrismCode>
             </div>
           </div>
         </div>
